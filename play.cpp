@@ -161,10 +161,48 @@ string decrypt(string text)
 }
 int main()
 {
-	string key = "monarchy", text = "hybride";
-	generate(key);
+	int opt;
+	cout << "Enter \n1) To Encrypt\n2)To Decrypt\n";
+	cin >> opt;
+	cout << "Enter input file name\n";
+	string fname;
+	cin >> fname;
+	cout << "Enter output file name\n";
+	string oname;
+	cin >> oname;
+	cout << "Enter key file name\n";
+	string keyname;
+	cin >> keyname;
+	ifstream fin, k;
+	ofstream fout;
+	fout.open(oname.c_str());
+	fin.open(fname.c_str());
+	k.open(keyname.c_str());
+	getline(k, keyname);
+	generate(keyname);
 	displaymat();
-	string ans = encrypt(text);
-	ans = decrypt(ans);
-	cout << ans;
+	if (opt == 1)
+	{
+		while (fin)
+		{
+			string str;
+			getline(fin, str);
+			string ans = encrypt(str);
+			fout << ans << endl;
+		}
+		fin.close();
+		fout.close();
+	}
+	if (opt == 2)
+	{
+		while (fin)
+		{
+			string str;
+			getline(fin, str);
+			string ans = decrypt(str);
+			fout << ans << endl;
+		}
+		fin.close();
+		fout.close();
+	}
 }
