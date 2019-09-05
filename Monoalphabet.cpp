@@ -71,8 +71,8 @@ int main()
 
 	ifstream fin;
 	ofstream fout;
-	fout.open(oname);
-	fin.open(fname);
+	fout.open(oname.c_str());
+	fin.open(fname.c_str());
 	if(opt==1)
 	{
 		while(fin)

@@ -45,6 +45,9 @@ void generate(string key)
 		it++;
 	}
 	dup = it->first;
+
+	dup = 'J';
+	mat[0][0] = 'h';
 }
 void displaymat()
 {
