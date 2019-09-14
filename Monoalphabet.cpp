@@ -1,6 +1,4 @@
-#include<iostream>
-#include<string>
-#include<fstream>
+#include<bits/stdc++.h>
 using namespace std;
 int keylength(string name)
 {
@@ -16,6 +14,21 @@ string getkey(string name)
 	fin.open("key.txt");
 	string str;
 	getline(fin,str);
+	map<char,int> m;
+	for(int i=0;i<26;i++)
+	{
+		if(((str[i]>=65 && str[i]<=90) || (str[i]>=97 && str[i]<=122)) && m[str[i]]==0)
+		{
+			m[str[i]]++;
+		}
+		else
+		{
+			cout<<"Your key should be unique and does not contain special symbols\n";
+			exit(0);	
+		}
+		
+	}
+
 	return str;
 }
 string encp(string text,string key)
@@ -57,10 +70,15 @@ int main()
 	string keyfile;
 	cin>>keyfile;
 	int keylen=keylength(keyfile);
+	if(keylen!=26)
+	{
+		cout<<"Key length should be of 26 length\n";
+		exit(0);
+	}
 	string key=getkey(keyfile);
 
 	int opt;
-	cout<<"Enter \n1) To Encrypt\n2)To Decrypt\n";
+	cout<<"Enter \n1) To Encrypt\n2)To Decrypt\n3)To Exit\n";
 	cin>>opt;
 	cout<<"Enter input file name\n";
 	string fname;
@@ -101,4 +119,6 @@ int main()
 		fin.close();
 		fout.close();
 	}
+	if (opt == 3)
+		exit(0);
 }
